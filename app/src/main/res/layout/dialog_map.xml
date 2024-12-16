@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:backgroundTint="@color/white"
+    android:elevation="2dp"
+    app:cardCornerRadius="10dp"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="10dp"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal" >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/btnClose"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/icon_close"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_marginRight="10dp"
+                app:tint="@color/black" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="לחץ על התמונה כדי להגדיל"
+                android:layout_gravity="center"
+                android:textSize="20dp"
+                android:textColor="@color/black" />
+
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/icon_delete"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="end|center_vertical"
+                app:tint="@color/black"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMapLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/orange"
+            android:drawableRight="@drawable/icon_link"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/white"
+            android:text="פתיחת לינק מצורף"
+            android:paddingLeft="20dp"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/stroke"
+            android:padding="2dp" />
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="4"
+            android:maxLines="4"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/style_edit_text"
+            android:gravity="right|top"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/darkest_gray"
+            android:textDirection="rtl"
+            android:textSize="15dp"
+            android:text=""
+            android:scrollbars="vertical"
+            android:focusable="false"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="10dp"
+            android:textDirection="rtl"
+            android:layoutDirection="rtl"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

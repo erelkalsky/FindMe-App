@@ -1,0 +1,1138 @@
+@startuml
+class com.example.findme.classes.users.UserAdapter {
+- List<User> userList
+- List<String> userListId
+- Context context
+- String filter
+- UserAdapter.OnUserClickListener onUserClickListener
++ <<Create>> UserAdapter(List<User>,List<String>,Context,UsersFragment)
++ UserViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(UserViewHolder,int)
++ int getItemCount()
++ void setFilter(String)
+}
+
+
+class com.example.findme.classes.users.UserAdapter$UserViewHolder {
+~ TextView tvUserName
+~ ImageView ivUserImage
++ <<Create>> UserViewHolder(View)
+}
+
+
+interface com.example.findme.classes.users.UserAdapter$OnUserClickListener {
+~ void onUserClick(User,String)
+}
+
+class com.example.findme.classes.dialogs.LoadingDialog {
++ <<Create>> LoadingDialog(Context)
+}
+
+class com.example.findme.home.users.createUser.CreateUserRoleFragment {
+~ LoadingButton btnSave
+~ DownSelect downSelect
+~ View view
+~ CreatingUserListener creatingUserListener
++ <<Create>> CreateUserRoleFragment(CreatingUserListener)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- AdapterView.OnItemSelectedListener getDropDownSelectedListener()
++ void failedToCreateUser()
+}
+
+
+class com.example.findme.home.users.createUser.CreateUserLastNameFragment {
+~ View view
+~ LoadingButton btnSave
+~ ErrorEditText etLastName
+~ CreatingUserListener creatingUserListener
++ <<Create>> CreateUserLastNameFragment(CreatingUserListener)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onResume()
++ void failedToCreateUser()
+}
+
+
+class com.example.findme.login.VerificationActivity {
+~ EditText code1
+~ LoadingButton btnResetPassword
+~ boolean code1Enabled
+~ long secondsRemaining
+~ String verificationCode
+# void onCreate(Bundle)
+- void resetPassword(String)
+- void setEditTextListeners()
+- TextWatcher setTextWatcher(EditText)
+- void updateButton()
+- View.OnKeyListener setOnKeyListener(EditText,EditText)
+- void setScrollViewFit()
++ void finish()
+}
+
+
+class com.example.findme.home.cases.createCase.CreateCaseLastNameFragment {
+~ View view
+~ ErrorEditText etLastName
+~ LoadingButton btnSave
+~ CreatingCaseListener creatingCaseListener
++ <<Create>> CreateCaseLastNameFragment(CreatingCaseListener)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onResume()
+}
+
+
+class com.example.findme.classes.cases.MediaAdapter {
+- List<StorageReference> items
+- Context context
+- OnMediaClickListener onMediaClickListener
++ <<Create>> MediaAdapter(List<StorageReference>,Context)
++ MediaAdapter.MediaViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(MediaAdapter.MediaViewHolder,int)
++ int getItemCount()
+}
+
+
+class com.example.findme.classes.cases.MediaAdapter$MediaViewHolder {
+~ TextView tvDescription
+~ ImageView ivImage
++ <<Create>> MediaViewHolder(View)
+}
+
+
+interface com.example.findme.classes.cases.MediaAdapter$OnMediaClickListener {
+~ void onMediaClick(Uri,boolean)
+}
+
+class com.example.findme.home.cases.aCase.CaseInquiriesActivity {
+~ Case aCase
+~ String caseId
+~ FloatingActionButton btnAddInquiry
+~ Dialog dialog
+~ LoadingButton loadingButton
+~ EditText etName
+~ List<Inquiry> inquiryItems
+~ InquiryAdapter adapter
+~ RecyclerView recyclerView
+~ boolean fullNameEnabled
+~ String fullNameRegex
+# void onCreate(Bundle)
+- void enableAddInquiryButton()
+- void uploadInquiry()
+- void updateInquiryList()
++ void onCaseUpdated(Case,String)
++ void onInquiryClick(int)
+- void deleteInquiry(Dialog,Inquiry,int)
++ void onCaseDeleted()
++ void finish()
+}
+
+
+class com.example.findme.classes.cases.CasesPagerAdapter {
+~ Fragment[] fragments
+~ String[] titles
++ <<Create>> CasesPagerAdapter(FragmentManager,Fragment[],String[])
++ Fragment getItem(int)
++ int getCount()
++ CharSequence getPageTitle(int)
+}
+
+
+class com.example.findme.home.cases.aCase.CaseUsersInCaseActivity {
+~ Case aCase
+~ String caseId
+~ List<String> userListId
+~ UsersInCaseAdapter adapter
+~ SearchEditText etSearch
+# void onCreate(Bundle)
++ void onCaseUpdated(Case,String)
++ boolean checkForNull()
++ void onUserClick(User,String,View)
++ void onCaseDeleted()
++ void finish()
+}
+
+
+class com.example.findme.home.cases.aCase.CaseMediaActivity {
+~ Case aCase
+~ FloatingActionButton btnAddMedia
+~ String caseId
+~ Dialog dialog
+~ LoadingButton loadingButton
+~ AppCompatButton btnUpload
+~ EditText etDescription
+~ List<StorageReference> mediaItems
+~ MediaAdapter mediaAdapter
+~ RecyclerView recyclerView
+~ ActivityResultLauncher<Intent> mGetContent
+# void onCreate(Bundle)
+- void updateMediaList()
+- void enableAddMediaButton()
+- String getMediaType(String)
+- void uploadMedia(Uri,String)
++ void onMediaClick(Uri,boolean)
+- void deleteMedia(Dialog,Uri,boolean)
++ void onCaseUpdated(Case,String)
++ void onCaseDeleted()
++ void finish()
+}
+
+
+class com.example.findme.classes.cases.CaseUserAdapter {
+- List<Case> casesList
+- List<String> caseListId
+- Context context
++ <<Create>> CaseUserAdapter(List<Case>,List<String>,Context)
++ CaseUserAdapter.CaseViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(CaseUserAdapter.CaseViewHolder,int)
++ int getItemCount()
+}
+
+
+class com.example.findme.classes.cases.CaseUserAdapter$CaseViewHolder {
+~ TextView tvTitle
+~ ImageView ivImage
++ <<Create>> CaseViewHolder(View)
+}
+
+
+abstract class com.example.findme.classes.ui.EditTextListener {
++ {static} TextWatcher phone(ErrorEditText,LoadingButton)
+- {static} boolean isValidPhone(String)
++ {static} TextWatcher firstName(ErrorEditText,LoadingButton)
++ {static} TextWatcher lastName(ErrorEditText,LoadingButton)
++ {static} TextWatcher equalToBefore(String,LoadingButton)
++ {static} TextWatcher caseId(ErrorEditText,LoadingButton)
++ {static} TextWatcher personId(ErrorEditText,LoadingButton)
++ {static} TextWatcher bigText(String,LoadingButton)
++ {static} TextWatcher validPhone(ErrorEditText,String,LoadingButton)
++ {static} TextWatcher validAge(String,LoadingButton)
++ {static} TextWatcher validHeight(String,LoadingButton)
+}
+
+class com.example.findme.classes.ui.DownSelect {
+~ Spinner spinner
+~ TextView tvError
++ <<Create>> DownSelect(Context)
++ <<Create>> DownSelect(Context,AttributeSet)
++ <<Create>> DownSelect(Context,AttributeSet,int)
+- void init(AttributeSet)
++ void setOnItemSelectedListener(AdapterView.OnItemSelectedListener)
++ int getItem()
++ void setError(String)
++ void removeError()
++ void setSelection(int)
+}
+
+
+class com.example.findme.classes.ui.DownSelect$SelectAdapter {
+~ List<String> list
++ <<Create>> SelectAdapter(List<String>)
++ int getCount()
++ Object getItem(int)
++ long getItemId(int)
++ View getView(int,View,ViewGroup)
++ boolean isEnabled(int)
+}
+
+
+class com.example.findme.home.cases.createCase.CreateCasePersonIdFragment {
+~ View view
+~ ErrorEditText etPersonId
+~ LoadingButton btnSave
+~ CreatingCaseListener creatingCaseListener
++ <<Create>> CreateCasePersonIdFragment(CreatingCaseListener)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onResume()
+}
+
+
+class com.example.findme.home.HomeFragment {
+~ View view
+~ List<Case> caseList
+~ List<String> caseListId
+~ CaseUserAdapter adapter
+~ RecyclerView recyclerView
+~ TextView tvUserName
+~ ImageView ivUserImage
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void updateCaseList()
++ void updateUi()
++ void onResume()
+}
+
+
+class com.example.findme.classes.ui.ErrorEditText {
+~ EditText editText
+~ TextView tvError
+~ InputFilter hebrewFilter
++ <<Create>> ErrorEditText(Context)
++ <<Create>> ErrorEditText(Context,AttributeSet)
++ <<Create>> ErrorEditText(Context,AttributeSet,int)
++ void setError(String)
++ void removeError()
+- void init(AttributeSet)
++ void setHint(String)
++ void setBigEditText()
++ void setMaxChars(int)
++ void setKeyboard(String,int)
+- void setIconVisible()
+- void setIconVisibleOff()
+- void setViewPasswordListener()
++ void addTextChangedListener(TextWatcher)
++ String getText()
++ void setText(String)
++ void setAvailable(boolean)
+}
+
+
+class com.example.findme.home.cases.aCase.MissingPersonActivity {
+~ Case aCase
+~ String caseId
+~ ScrollView scrollView
+# void onCreate(Bundle)
+- void updateScrollView()
++ void onCaseUpdated(Case,String)
++ void onCaseDeleted()
++ void finish()
+}
+
+
+class com.example.findme.classes.cases.MissingPerson {
+- String firstName
+- String lastName
+- String id
+- String phoneNumber
+- String address
+- String age
+- String height
+- String eyeColor
+- String hair
+- String beard
+- String upperClothing
+- String lowerClothing
+- String hat
+- String shoes
+- String glasses
+- String bag
+- String water
+- String food
+- String weapon
+- String scars
+- String tattoos
+- String disabilities
+- String limp
+- String hearing
+- String earringsPiercings
+- String watch
+- String jewelry
+- String wallet
+- String money
+- String creditCard
+- String RavKav
+- String bankDetails
+- String diseases
+- String mentalHealth
+- String medicationTherapy
+- String survivalSkills
+- String pastMissingCases
+- String hobbies
+- String drugsAlcohol
+- String vehicle
+- String languages
++ {static} Map<String,String[]> fields
++ <<Create>> MissingPerson()
++ <<Create>> MissingPerson(String,String,String)
++ String getFirstName()
++ void setFirstName(String)
++ String getLastName()
++ void setLastName(String)
++ String getId()
++ void setId(String)
++ String getPhoneNumber()
++ void setPhoneNumber(String)
++ String getAddress()
++ void setAddress(String)
++ String getAge()
++ void setAge(String)
++ String getHeight()
++ void setHeight(String)
++ String getEyeColor()
++ void setEyeColor(String)
++ String getHair()
++ void setHair(String)
++ String getBeard()
++ void setBeard(String)
++ String getUpperClothing()
++ void setUpperClothing(String)
++ String getLowerClothing()
++ void setLowerClothing(String)
++ String getHat()
++ void setHat(String)
++ String getShoes()
++ void setShoes(String)
++ String getGlasses()
++ void setGlasses(String)
++ String getBag()
++ void setBag(String)
++ String getWater()
++ void setWater(String)
++ String getFood()
++ void setFood(String)
++ String getWeapon()
++ void setWeapon(String)
++ String getScars()
++ void setScars(String)
++ String getTattoos()
++ void setTattoos(String)
++ String getDisabilities()
++ void setDisabilities(String)
++ String getLimp()
++ void setLimp(String)
++ String getHearing()
++ void setHearing(String)
++ String getEarringsPiercings()
++ void setEarringsPiercings(String)
++ String getWatch()
++ void setWatch(String)
++ String getJewelry()
++ void setJewelry(String)
++ String getWallet()
++ void setWallet(String)
++ String getMoney()
++ void setMoney(String)
++ String getCreditCard()
++ void setCreditCard(String)
++ String getRavKav()
++ void setRavKav(String)
++ String getBankDetails()
++ void setBankDetails(String)
++ String getDiseases()
++ void setDiseases(String)
++ String getMentalHealth()
++ void setMentalHealth(String)
++ String getMedicationTherapy()
++ void setMedicationTherapy(String)
++ String getSurvivalSkills()
++ void setSurvivalSkills(String)
++ String getPastMissingCases()
++ void setPastMissingCases(String)
++ String getHobbies()
++ void setHobbies(String)
++ String getDrugsAlcohol()
++ void setDrugsAlcohol(String)
++ String getVehicle()
++ void setVehicle(String)
++ String getLanguages()
++ void setLanguages(String)
+}
+
+
+class com.example.findme.home.cases.createCase.CreateCaseActivity {
+- Fragment[] fragments
+~ Fragment currentFragment
+~ String caseId
+# void onCreate(Bundle)
++ void onBackPressed()
++ void onBackPressed(boolean)
++ void onCaseCreationResult(Intent)
+- void loadFragment(Fragment,boolean,boolean)
+- void createCase()
+- void addCaseToDatabase(Case)
+}
+
+
+interface com.example.findme.classes.dialogs.ConfirmClickListener {
+~ void onOkClicked()
+~ void onCancelClick()
+}
+
+class com.example.findme.home.cases.CasesFragment {
+~ View view
+~ Fragment[] fragments
+~ String[] titles
+~ FloatingActionButton btnCreateCase
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void updateUi()
+}
+
+
+abstract class com.example.findme.classes.PasswordGenerator {
+- {static} String LETTERS
+- {static} String NUMBERS
+- {static} String SPECIAL_CHARS
++ {static} String generatePassword()
+- {static} String shuffleString(String)
+- {static} char randomChar()
++ {static} String generateNumericPassword(int)
+}
+
+
+class com.example.findme.home.cases.createCase.CreateCaseFirstNameFragment {
+~ View view
+~ ErrorEditText etFirstName
+~ LoadingButton btnSave
+~ CreatingCaseListener creatingCaseListener
++ <<Create>> CreateCaseFirstNameFragment(CreatingCaseListener)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onResume()
+}
+
+
+class com.example.findme.login.SendPhoneVerificationActivity {
+~ ErrorEditText etPhone
+~ LoadingButton btnSendsSms
+# void onCreate(Bundle)
+- void setScrollViewFit()
+- TextWatcher textWatcherPhone()
+- boolean isValidPhone(String)
++ void finish()
+}
+
+
+class com.example.findme.classes.api.SendSms {
+- String phoneNumber
+- String body
++ <<Create>> SendSms(String,String)
+# Void doInBackground(Void)
+# void onPostExecute(Void)
+}
+
+
+class com.example.findme.classes.api.Database {
++ {static} User user
++ {static} String userId
++ {static} void login(Context,String,String,LoginListener)
++ {static} void login(Context,String,LoginListener)
+- {static} void handleLoginSuccess(Context,User,String,LoginListener)
+- {static} void handleLoginFailure(Exception,LoginListener)
+- {static} String[] getErrorText(Exception)
+- {static} void saveCurrentUser(Context,String)
+- {static} void clearCurrentUser(Context)
++ {static} void logout(Context)
++ {static} void createUser(User,CreateUserListener)
++ {static} ListenerRegistration listenForUserUpdates(UserUpdateListener)
++ {static} void listenForCollectionUpdates(String,CollectionUpdateListener)
++ {static} void updateUser(String,String,UpdateUserListener)
++ {static} void isPhoneExist(String,IsPhoneExistListener)
++ {static} String roleToString(Context,int)
++ {static} void createCase(Case,CreateCaseListener)
++ {static} void isCaseExist(String,IsCaseExistListener)
++ {static} ListenerRegistration listenForCaseUpdates(CaseUpdateListener,String)
++ {static} void updateCase(String,String,String,UpdateCaseListener)
++ {static} boolean isNetworkConnected(Context)
+}
+
+
+interface com.example.findme.classes.api.Database$LoginListener {
+~ void onLoginSuccess()
+~ void onFirstLogin(String)
+~ void onUserLocked()
+~ void onUserNotFound()
+~ void onLoginFailure(String,String,String)
+}
+
+interface com.example.findme.classes.api.Database$CreateUserListener {
+~ void onCreateUserSuccess()
+~ void onCreateUserFailure(String)
+}
+
+interface com.example.findme.classes.api.Database$UserUpdateListener {
+~ void onUserUpdated()
+~ void onUserDeleted()
+}
+
+interface com.example.findme.classes.api.Database$CollectionUpdateListener {
+~ void onCollectionUpdated()
+}
+
+interface com.example.findme.classes.api.Database$UpdateUserListener {
+~ void onUpdateUserSuccess()
+~ void onUpdateUserFailure()
+}
+
+interface com.example.findme.classes.api.Database$IsPhoneExistListener {
+~ void onPhoneExist()
+~ void onPhoneNotExist()
+~ void onFailure(String,String,String)
+}
+
+interface com.example.findme.classes.api.Database$CreateCaseListener {
+~ void onCreateCaseSuccess()
+~ void onCreateCaseFailure(String)
+}
+
+interface com.example.findme.classes.api.Database$IsCaseExistListener {
+~ void onCaseExist()
+~ void onCaseNotExist()
+~ void onFailure(String,String,String)
+}
+
+interface com.example.findme.classes.api.Database$CaseUpdateListener {
+~ void onCaseUpdated(Case,String)
+~ void onCaseDeleted()
+}
+
+interface com.example.findme.classes.api.Database$UpdateCaseListener {
+~ void onUpdateCaseSuccess()
+~ void onUpdateCaseFailure()
+}
+
+class com.example.findme.home.settings.SettingsFragment {
+~ View view
+~ ErrorDialog errorDialog
+~ Button btnEditProfilePic
+~ FrameLayout btnLogout
+~ TextView tvFirstName
+~ ImageView ivUserImage
+- {static} int PICK_IMAGE_REQUEST
+- {static} int CAMERA_REQUEST
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void findViews()
++ void updateUi()
+- void openImageDialog()
+- Uri getImageUriFromBitmap(Bitmap)
++ void onActivityResult(int,int,Intent)
+- void handleLogout()
+}
+
+
+class com.example.findme.classes.dialogs.ConfirmDialog {
+- TextView tvTitle
+- TextView btnOk
++ <<Create>> ConfirmDialog(Context,String,String,String,String,ConfirmClickListener)
+}
+
+
+class com.example.findme.home.cases.aCase.CaseMapsActivity {
+~ Case aCase
+~ FloatingActionButton btnAddMap
+~ String caseId
+~ Dialog dialog
+~ LoadingButton loadingButton
+~ AppCompatButton btnUpload
+~ EditText etDescription
+~ List<StorageReference> mapItems
+~ MapAdapter mapAdapter
+~ RecyclerView recyclerView
+~ EditText etMapsLink
+~ Uri mapUri
+~ String mapLinkRegex
+~ ActivityResultLauncher<Intent> mGetContent
+# void onCreate(Bundle)
+- void updateMapList()
+- void enableAddMapButton()
+- void uploadMap()
++ void onMapClick(Uri,boolean)
+- void deleteMap(Dialog,Uri)
++ void onCaseUpdated(Case,String)
++ void onCaseDeleted()
++ void finish()
+}
+
+
+class com.example.findme.home.cases.aCase.CaseActivity {
+~ Case aCase
+~ String caseId
+~ TextView tvCaseId
+~ ImageView ivCaseImage
+~ Switch switchUserInCase
+- {static} int PICK_IMAGE_REQUEST
+- boolean isVisible
+# void onCreate(Bundle)
+- void findViews()
+- void enableButtons()
+- void updateUi()
+- void startEditCase(String,String,String,String)
+- void openImageDialog()
++ void onActivityResult(int,int,Intent)
++ void onCaseUpdated(Case,String)
+- void updateUsersInCase()
++ void onCaseDeleted()
++ void finish()
+# void onResume()
+# void onPause()
++ void onUserUpdated()
++ void setCloseCaseVisibility(boolean)
++ void onUserDeleted()
+}
+
+
+class com.example.findme.login.FirstLoginActivity {
+~ ErrorEditText etNewPassword
+~ LoadingButton btnSave
+~ boolean newPasswordEnabled
+~ String passwordRegex
+# void onCreate(Bundle)
+- void setEditTextListeners()
+- void setScrollViewFit()
+}
+
+
+class com.example.findme.classes.cases.InquiryAdapter {
+- List<Inquiry> items
+- Context context
+- InquiryAdapter.OnInquiryClickListener onInquiryClickListener
++ <<Create>> InquiryAdapter(List<Inquiry>,Context)
++ InquiryViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(InquiryViewHolder,int)
++ int getItemCount()
+}
+
+
+class com.example.findme.classes.cases.InquiryAdapter$InquiryViewHolder {
+~ TextView tvTitle
++ <<Create>> InquiryViewHolder(View)
+}
+
+
+interface com.example.findme.classes.cases.InquiryAdapter$OnInquiryClickListener {
+~ void onInquiryClick(int)
+}
+
+class com.example.findme.home.users.createUser.CreateUserActivity {
+~ Fragment[] fragments
+~ Fragment currentFragment
+~ String phone
+~ int role
+# void onCreate(Bundle)
++ void onBackPressed()
++ void onBackPressed(boolean)
++ void onUserCreationResult(Intent)
+- void loadFragment(Fragment,boolean,boolean)
+- void createUser()
+- void addUserToDatabase(User)
+}
+
+
+class com.example.findme.home.cases.ActiveCasesFragment {
+~ View view
+~ List<Case> caseList
+~ List<String> caseListId
+~ CaseAdapter adapter
+~ SearchEditText etSearch
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void updateCaseList()
++ void onCollectionUpdated()
+}
+
+
+class com.example.findme.classes.cases.MapAdapter {
+- List<StorageReference> items
+- Context context
+- MapAdapter.OnMapClickListener onMapClickListener
++ <<Create>> MapAdapter(List<StorageReference>,Context)
++ MapViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(MapViewHolder,int)
++ int getItemCount()
+}
+
+
+class com.example.findme.classes.cases.MapAdapter$MapViewHolder {
+~ TextView tvDescription
+~ ImageView ivImage
++ <<Create>> MapViewHolder(View)
+}
+
+
+interface com.example.findme.classes.cases.MapAdapter$OnMapClickListener {
+~ void onMapClick(Uri,boolean)
+}
+
+class com.example.findme.home.cases.HistoricalCasesFragment {
+~ View view
+~ List<Case> caseList
+~ List<String> caseListId
+~ CaseAdapter adapter
+~ SearchEditText etSearch
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void updateCaseList()
++ void onCollectionUpdated()
+}
+
+
+interface com.example.findme.home.users.createUser.CreatingUserListener {
+~ void onUserCreationResult(Intent)
+~ void onBackPressed(boolean)
+}
+
+class com.example.findme.login.LoginActivity {
+~ ErrorEditText etPhone
+~ LoadingButton btnLogin
+~ LoadingDialog loadingDialog
+# void onCreate(Bundle)
+- void setScrollViewFit()
+- void login()
+- void resetFields()
+- boolean checkFields(String,String)
+- void connectUser(String,String)
+- void connectUser(String)
+- TextWatcher textWatcherPhone()
+- TextWatcher textWatcherPassword()
+- boolean isValidPhone(String)
+- boolean isValidPassword(String)
+}
+
+
+class com.example.findme.classes.ui.LoadingButton {
+- TextView textView
+- ProgressBar progressBar
+- boolean inProgress
+- boolean locked
++ <<Create>> LoadingButton(Context)
++ <<Create>> LoadingButton(Context,AttributeSet)
++ <<Create>> LoadingButton(Context,AttributeSet,int)
+- void init(AttributeSet)
++ void start()
++ void stop()
++ boolean isInProgress()
++ void setEnabled()
++ void setDisabled()
++ void setLocked(boolean)
++ boolean isLocked()
++ void setButtonText(String)
+}
+
+
+class com.example.findme.classes.cases.CaseAdapter {
+- List<Case> casesList
+- List<String> caseListId
+- Context context
+- String filter
++ <<Create>> CaseAdapter(List<Case>,List<String>,Context)
++ CaseViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(CaseViewHolder,int)
++ int getItemCount()
++ void setFilter(String)
+}
+
+
+class com.example.findme.classes.cases.CaseAdapter$CaseViewHolder {
+~ TextView tvTitle
+~ ImageView ivImage
++ <<Create>> CaseViewHolder(View)
+}
+
+
+class com.example.findme.home.users.UsersFragment {
+~ View view
+~ List<User> userList
+~ List<String> userListId
+~ UserAdapter adapter
+~ FloatingActionButton btnCreateUser
+~ SearchEditText etSearch
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void updateUserList()
++ void onCollectionUpdated()
++ void onUserClick(User,String)
+}
+
+
+class com.example.findme.home.settings.editUser.EditUserPasswordActivity {
+~ ErrorEditText etCurrentPassword
+~ LoadingButton btnSave
+~ boolean currentPasswordEnabled
+~ String passwordRegex
+# void onCreate(Bundle)
+- void updateUser(String)
+- void setEditTextListeners()
++ void finish()
+}
+
+
+class com.example.findme.home.users.createUser.CreateUserPhoneFragment {
+~ View view
+~ ErrorEditText etPhone
+~ LoadingButton btnSave
+~ CreatingUserListener creatingUserListener
++ <<Create>> CreateUserPhoneFragment(CreatingUserListener)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+
+
+class com.example.findme.classes.users.User {
+- String phone
+- String password
+- String firstName
+- String lastName
+- Integer role
+- Integer loginAttempts
+- boolean firstLogin
++ <<Create>> User()
++ <<Create>> User(String,String,String,String,int)
++ String getPhone()
++ String getPassword()
++ String getFirstName()
++ String getLastName()
++ int getRole()
++ Integer getLoginAttempts()
++ boolean isFirstLogin()
+}
+
+
+class com.example.findme.home.cases.createCase.CreateCaseIdFragment {
+~ View view
+~ ErrorEditText etCase
+~ LoadingButton btnSave
+~ CreatingCaseListener creatingCaseListener
++ <<Create>> CreateCaseIdFragment(CreatingCaseListener)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+
+
+class com.example.findme.home.users.createUser.CreateUserFirstNameFragment {
+~ View view
+~ LoadingButton btnSave
+~ ErrorEditText etFirstName
+~ CreatingUserListener creatingUserListener
++ <<Create>> CreateUserFirstNameFragment(CreatingUserListener)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onResume()
+}
+
+
+class com.example.findme.classes.cases.Inquiry {
+- String investigatedName
+- String userId
+- String inquirySummary
+- long uploadTime
++ <<Create>> Inquiry()
++ <<Create>> Inquiry(String,String,String,long)
++ String getInvestigatedName()
++ String getUserId()
++ String getInquirySummary()
++ long getUploadTime()
+}
+
+
+class com.example.findme.home.settings.editUser.EditUserActivity {
+~ ErrorEditText editText
+~ LoadingButton btnSave
+~ Map<String,String> TRANSFORM_HEBREW
+~ Map<String,String> TRANSFORM_KEYBOARD
+# void onCreate(Bundle)
+- void updateUser(String,String)
++ void finish()
+}
+
+
+class com.example.findme.home.cases.createCase.CreateCaseTranscriptFragment {
+~ View view
+~ ErrorEditText etTranscript
+~ LoadingButton btnSave
+~ CreatingCaseListener creatingCaseListener
++ <<Create>> CreateCaseTranscriptFragment(CreatingCaseListener)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void failedToCreateUser()
+}
+
+
+class com.example.findme.classes.ui.SearchEditText {
+- TextView btnCancel
+- EditText editText
++ <<Create>> SearchEditText(Context)
++ <<Create>> SearchEditText(Context,AttributeSet)
++ <<Create>> SearchEditText(Context,AttributeSet,int)
+- void init(AttributeSet)
+- void showCancelButton(boolean)
+- void hideKeyboard()
++ void addTextChangedListener(TextWatcher)
++ String getText()
+}
+
+
+class com.example.findme.home.MainActivity {
+~ BottomNavigationView bottomNavigationView
+~ FrameLayout frameLayout
+~ int currentFragmentId
+~ ListenerRegistration userUpdateListenerRegistration
+# void onCreate(Bundle)
+- void loadFragment(Fragment)
++ void onUserUpdated()
+- void resetBottomMenu()
++ void onUserDeleted()
+# void onStop()
+# void onStart()
+}
+
+
+class com.example.findme.classes.dialogs.ErrorDialog {
+- TextView tvTitle
+- TextView btnCancel
++ <<Create>> ErrorDialog(Context,String,String,String)
+}
+
+
+class com.example.findme.home.cases.aCase.EditCaseActivity {
+~ Case aCase
+~ String caseId
+~ ErrorEditText editText
+~ LoadingButton btnSave
+~ String fieldName
+~ ListenerRegistration caseListenerRegistration
+# void onCreate(Bundle)
+- void setKeyboard()
+- void checkCaseId(String)
+- void update(String)
+- void setEditable(boolean)
++ void onCaseUpdated(Case,String)
++ void onCaseDeleted()
++ void finish()
+# void onStart()
+# void onStop()
+}
+
+
+class com.example.findme.classes.cases.Case {
+- String caseId
+- boolean active
+- String transcript
+- MissingPerson missingPerson
+- List<Inquiry> inquiries
+- List<String> usersInCase
++ <<Create>> Case()
++ <<Create>> Case(String,String,MissingPerson)
++ String getCaseId()
++ void setCaseId(String)
++ boolean isActive()
++ String getTranscript()
++ MissingPerson getMissingPerson()
++ List<Inquiry> getInquiries()
++ void setInquiries(List<Inquiry>)
++ List<String> getUsersInCase()
++ void removeUserFromCase(String)
++ boolean isUserInCase(String)
+}
+
+
+interface com.example.findme.home.cases.createCase.CreatingCaseListener {
+~ void onCaseCreationResult(Intent)
+~ void onBackPressed(boolean)
+}
+
+class com.example.findme.classes.cases.UsersInCaseAdapter {
+- List<String> userListId
+- Context context
+- String filter
+- OnUsersInCaseClickListener onUsersInCaseClickListener
++ <<Create>> UsersInCaseAdapter(List<String>,Context)
++ UserViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(UserViewHolder,int)
++ int getItemCount()
++ void setFilter(String)
+}
+
+
+class com.example.findme.classes.cases.UsersInCaseAdapter$UserViewHolder {
+~ TextView tvUserName
+~ ImageView ivUserImage
++ <<Create>> UserViewHolder(View)
+}
+
+
+interface com.example.findme.classes.cases.UsersInCaseAdapter$OnUsersInCaseClickListener {
+~ void onUserClick(User,String,View)
+}
+
+
+
+com.example.findme.classes.users.Adapter <|-- com.example.findme.classes.users.UserAdapter
+com.example.findme.classes.users.UserAdapter +.. com.example.findme.classes.users.UserAdapter$UserViewHolder
+com.example.findme.classes.users.ViewHolder <|-- com.example.findme.classes.users.UserAdapter$UserViewHolder
+com.example.findme.classes.users.UserAdapter +.. com.example.findme.classes.users.UserAdapter$OnUserClickListener
+android.app.Dialog <|-- com.example.findme.classes.dialogs.LoadingDialog
+androidx.fragment.app.Fragment <|-- com.example.findme.home.users.createUser.CreateUserRoleFragment
+androidx.fragment.app.Fragment <|-- com.example.findme.home.users.createUser.CreateUserLastNameFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.login.VerificationActivity
+androidx.fragment.app.Fragment <|-- com.example.findme.home.cases.createCase.CreateCaseLastNameFragment
+com.example.findme.classes.cases.Adapter <|-- com.example.findme.classes.cases.MediaAdapter
+com.example.findme.classes.cases.MediaAdapter +.. com.example.findme.classes.cases.MediaAdapter$MediaViewHolder
+com.example.findme.classes.cases.ViewHolder <|-- com.example.findme.classes.cases.MediaAdapter$MediaViewHolder
+com.example.findme.classes.cases.MediaAdapter +.. com.example.findme.classes.cases.MediaAdapter$OnMediaClickListener
+com.example.findme.home.cases.aCase.CaseUpdateListener <|.. com.example.findme.home.cases.aCase.CaseInquiriesActivity
+com.example.findme.home.cases.aCase.OnInquiryClickListener <|.. com.example.findme.home.cases.aCase.CaseInquiriesActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.home.cases.aCase.CaseInquiriesActivity
+androidx.fragment.app.FragmentPagerAdapter <|-- com.example.findme.classes.cases.CasesPagerAdapter
+com.example.findme.home.cases.aCase.CaseUpdateListener <|.. com.example.findme.home.cases.aCase.CaseUsersInCaseActivity
+com.example.findme.home.cases.aCase.OnUsersInCaseClickListener <|.. com.example.findme.home.cases.aCase.CaseUsersInCaseActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.home.cases.aCase.CaseUsersInCaseActivity
+com.example.findme.home.cases.aCase.OnMediaClickListener <|.. com.example.findme.home.cases.aCase.CaseMediaActivity
+com.example.findme.home.cases.aCase.CaseUpdateListener <|.. com.example.findme.home.cases.aCase.CaseMediaActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.home.cases.aCase.CaseMediaActivity
+com.example.findme.classes.cases.Adapter <|-- com.example.findme.classes.cases.CaseUserAdapter
+com.example.findme.classes.cases.CaseUserAdapter +.. com.example.findme.classes.cases.CaseUserAdapter$CaseViewHolder
+com.example.findme.classes.cases.ViewHolder <|-- com.example.findme.classes.cases.CaseUserAdapter$CaseViewHolder
+android.widget.LinearLayout <|-- com.example.findme.classes.ui.DownSelect
+com.example.findme.classes.ui.DownSelect +.. com.example.findme.classes.ui.DownSelect$SelectAdapter
+com.example.findme.classes.ui.BaseAdapter <|-- com.example.findme.classes.ui.DownSelect$SelectAdapter
+androidx.fragment.app.Fragment <|-- com.example.findme.home.cases.createCase.CreateCasePersonIdFragment
+androidx.fragment.app.Fragment <|-- com.example.findme.home.HomeFragment
+android.widget.LinearLayout <|-- com.example.findme.classes.ui.ErrorEditText
+com.example.findme.home.cases.aCase.CaseUpdateListener <|.. com.example.findme.home.cases.aCase.MissingPersonActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.home.cases.aCase.MissingPersonActivity
+java.io.Serializable <|.. com.example.findme.classes.cases.MissingPerson
+com.example.findme.home.cases.createCase.CreatingCaseListener <|.. com.example.findme.home.cases.createCase.CreateCaseActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.home.cases.createCase.CreateCaseActivity
+androidx.fragment.app.Fragment <|-- com.example.findme.home.cases.CasesFragment
+androidx.fragment.app.Fragment <|-- com.example.findme.home.cases.createCase.CreateCaseFirstNameFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.login.SendPhoneVerificationActivity
+android.os.AsyncTask <|-- com.example.findme.classes.api.SendSms
+com.example.findme.classes.api.Database +.. com.example.findme.classes.api.Database$LoginListener
+com.example.findme.classes.api.Database +.. com.example.findme.classes.api.Database$CreateUserListener
+com.example.findme.classes.api.Database +.. com.example.findme.classes.api.Database$UserUpdateListener
+com.example.findme.classes.api.Database +.. com.example.findme.classes.api.Database$CollectionUpdateListener
+com.example.findme.classes.api.Database +.. com.example.findme.classes.api.Database$UpdateUserListener
+com.example.findme.classes.api.Database +.. com.example.findme.classes.api.Database$IsPhoneExistListener
+com.example.findme.classes.api.Database +.. com.example.findme.classes.api.Database$CreateCaseListener
+com.example.findme.classes.api.Database +.. com.example.findme.classes.api.Database$IsCaseExistListener
+com.example.findme.classes.api.Database +.. com.example.findme.classes.api.Database$CaseUpdateListener
+com.example.findme.classes.api.Database +.. com.example.findme.classes.api.Database$UpdateCaseListener
+androidx.fragment.app.Fragment <|-- com.example.findme.home.settings.SettingsFragment
+android.app.Dialog <|-- com.example.findme.classes.dialogs.ConfirmDialog
+com.example.findme.home.cases.aCase.OnMapClickListener <|.. com.example.findme.home.cases.aCase.CaseMapsActivity
+com.example.findme.home.cases.aCase.CaseUpdateListener <|.. com.example.findme.home.cases.aCase.CaseMapsActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.home.cases.aCase.CaseMapsActivity
+com.example.findme.home.cases.aCase.CaseUpdateListener <|.. com.example.findme.home.cases.aCase.CaseActivity
+com.example.findme.home.cases.aCase.UserUpdateListener <|.. com.example.findme.home.cases.aCase.CaseActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.home.cases.aCase.CaseActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.login.FirstLoginActivity
+com.example.findme.classes.cases.Adapter <|-- com.example.findme.classes.cases.InquiryAdapter
+com.example.findme.classes.cases.InquiryAdapter +.. com.example.findme.classes.cases.InquiryAdapter$InquiryViewHolder
+com.example.findme.classes.cases.ViewHolder <|-- com.example.findme.classes.cases.InquiryAdapter$InquiryViewHolder
+com.example.findme.classes.cases.InquiryAdapter +.. com.example.findme.classes.cases.InquiryAdapter$OnInquiryClickListener
+com.example.findme.home.users.createUser.CreatingUserListener <|.. com.example.findme.home.users.createUser.CreateUserActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.home.users.createUser.CreateUserActivity
+com.example.findme.home.cases.CollectionUpdateListener <|.. com.example.findme.home.cases.ActiveCasesFragment
+androidx.fragment.app.Fragment <|-- com.example.findme.home.cases.ActiveCasesFragment
+com.example.findme.classes.cases.Adapter <|-- com.example.findme.classes.cases.MapAdapter
+com.example.findme.classes.cases.MapAdapter +.. com.example.findme.classes.cases.MapAdapter$MapViewHolder
+com.example.findme.classes.cases.ViewHolder <|-- com.example.findme.classes.cases.MapAdapter$MapViewHolder
+com.example.findme.classes.cases.MapAdapter +.. com.example.findme.classes.cases.MapAdapter$OnMapClickListener
+com.example.findme.home.cases.CollectionUpdateListener <|.. com.example.findme.home.cases.HistoricalCasesFragment
+androidx.fragment.app.Fragment <|-- com.example.findme.home.cases.HistoricalCasesFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.login.LoginActivity
+android.widget.LinearLayout <|-- com.example.findme.classes.ui.LoadingButton
+com.example.findme.classes.cases.Adapter <|-- com.example.findme.classes.cases.CaseAdapter
+com.example.findme.classes.cases.CaseAdapter +.. com.example.findme.classes.cases.CaseAdapter$CaseViewHolder
+com.example.findme.classes.cases.ViewHolder <|-- com.example.findme.classes.cases.CaseAdapter$CaseViewHolder
+com.example.findme.home.users.CollectionUpdateListener <|.. com.example.findme.home.users.UsersFragment
+com.example.findme.home.users.OnUserClickListener <|.. com.example.findme.home.users.UsersFragment
+androidx.fragment.app.Fragment <|-- com.example.findme.home.users.UsersFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.home.settings.editUser.EditUserPasswordActivity
+androidx.fragment.app.Fragment <|-- com.example.findme.home.users.createUser.CreateUserPhoneFragment
+java.io.Serializable <|.. com.example.findme.classes.users.User
+androidx.fragment.app.Fragment <|-- com.example.findme.home.cases.createCase.CreateCaseIdFragment
+androidx.fragment.app.Fragment <|-- com.example.findme.home.users.createUser.CreateUserFirstNameFragment
+java.io.Serializable <|.. com.example.findme.classes.cases.Inquiry
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.home.settings.editUser.EditUserActivity
+androidx.fragment.app.Fragment <|-- com.example.findme.home.cases.createCase.CreateCaseTranscriptFragment
+android.widget.LinearLayout <|-- com.example.findme.classes.ui.SearchEditText
+com.example.findme.home.UserUpdateListener <|.. com.example.findme.home.MainActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.home.MainActivity
+android.app.Dialog <|-- com.example.findme.classes.dialogs.ErrorDialog
+com.example.findme.home.cases.aCase.CaseUpdateListener <|.. com.example.findme.home.cases.aCase.EditCaseActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.findme.home.cases.aCase.EditCaseActivity
+java.io.Serializable <|.. com.example.findme.classes.cases.Case
+com.example.findme.classes.cases.Adapter <|-- com.example.findme.classes.cases.UsersInCaseAdapter
+com.example.findme.classes.cases.UsersInCaseAdapter +.. com.example.findme.classes.cases.UsersInCaseAdapter$UserViewHolder
+com.example.findme.classes.cases.ViewHolder <|-- com.example.findme.classes.cases.UsersInCaseAdapter$UserViewHolder
+com.example.findme.classes.cases.UsersInCaseAdapter +.. com.example.findme.classes.cases.UsersInCaseAdapter$OnUsersInCaseClickListener
+@enduml

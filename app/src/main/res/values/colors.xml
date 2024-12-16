@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#162f4d</color>
+    <color name="orange" >#ed7d31</color>
+    <color name="darker_orange">#DA610F</color>
+    <color name="error_red">@android:color/holo_red_dark</color>
+    <color name="red_cyan">#FF0000</color>
+    <color name="light_gray">#E8EBEC</color>
+    <color name="medium_gray">@android:color/darker_gray</color>
+    <color name="dark_gray">#8C8C8C</color>
+    <color name="darkest_gray">#5A5A5A</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="almost_white">#fafafa</color>
+</resources>

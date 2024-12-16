@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "328743620116",
+    "firebase_url": "https://itor-0001-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "itor-0001",
+    "storage_bucket": "itor-0001.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328743620116:android:6250b6ebf5ca9cac786101",
+        "android_client_info": {
+          "package_name": "com.example.findme"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJF-qSRi2IHvmG-sRxH93K0pcikr7w1c8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328743620116:android:23d810891a621e43786101",
+        "android_client_info": {
+          "package_name": "com.example.itor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJF-qSRi2IHvmG-sRxH93K0pcikr7w1c8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

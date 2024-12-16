@@ -1,0 +1,28 @@
+<!-- res/drawable/background_selector.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- Background with shadow -->
+            <item>
+                <shape>
+                    <solid android:color="@android:color/white" />
+                    <corners android:radius="8dp" />
+                </shape>
+            </item>
+            <!-- Shadow -->
+            <item android:right="1dp" android:left="1dp" android:top="1dp" android:bottom="1dp">
+                <shape>
+                    <solid android:color="#80000000" /> <!-- Adjust the alpha value for the shadow color -->
+                    <corners android:radius="8dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item>
+        <!-- Default background -->
+        <shape>
+            <solid android:color="@android:color/white" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+</selector>

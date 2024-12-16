@@ -1,0 +1,37 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.FindMe" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/black</item>
+
+        <item name="android:colorPrimaryDark">@color/white</item>
+        <item name="colorControlActivated">@android:color/darker_gray</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="Theme.FindMe" parent="Base.Theme.FindMe" />
+
+    <style name="Widget.AppCompat.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigation</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigation" parent="">
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="MyTextInputLayout">
+        <item name="boxStrokeColor">@null</item>
+        <item name="hintEnabled">false</item>
+        <item name="background">@color/blue</item>
+    </style>
+
+    <style name="CustomShapeOverlay">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CombinedTextInputLayout" parent="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@null</item>
+        <item name="hintEnabled">false</item>
+    </style>
+</resources>

@@ -1,0 +1,18 @@
+<resources>
+    <declare-styleable name="ErrorEditText">
+        <attr name="topHint" format="boolean" />
+        <attr name="hint" format="string" />
+        <attr name="keyboard" format="string" />
+        <attr name="maxChars" format="integer" />
+        <attr name="bigEditText" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="DownSelect">
+        <attr name="items" format="string" />
+        <attr name="start" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="LoadingButton">
+        <attr name="buttonText" format="string" />
+    </declare-styleable>
+</resources>

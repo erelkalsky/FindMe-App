@@ -1,0 +1,88 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="8dp"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="5dp"
+            android:backgroundTint="@color/darkest_gray"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="0dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="את/ה בטוח/ה רוצה להתנתק?"
+            android:textSize="20dp"
+            android:textColor="@color/darkest_gray"
+            android:layout_marginTop="20dp"
+            android:paddingRight="15dp"/>
+
+        <LinearLayout
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:paddingRight="10dp"
+            android:clickable="true"
+            android:focusable="true" >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_logout"
+                android:layout_gravity="center_vertical"
+                app:tint="@color/error_red" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:text="התנתק"
+                android:textSize="15dp"
+                android:textColor="@color/error_red" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:clickable="true"
+            android:focusable="true" >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_cancel"
+                android:layout_gravity="center_vertical"
+                app:tint="@color/darkest_gray"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:text="ביטול"
+                android:textSize="15dp"
+                android:textColor="@color/darkest_gray"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

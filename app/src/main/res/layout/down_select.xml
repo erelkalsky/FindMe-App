@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingHorizontal="10dp"
+        android:spinnerMode="dropdown"
+        android:background="@drawable/style_edit_text"
+        android:dropDownWidth="match_parent"
+        android:dropDownVerticalOffset="45dp"
+        android:popupBackground="@android:color/white"
+        android:dropDownHorizontalOffset="0dp" />
+
+    <TextView
+        android:id="@+id/tvError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:paddingHorizontal="3dp"
+        android:textColor="@color/red_cyan"
+        android:visibility="gone" />
+
+</LinearLayout>
